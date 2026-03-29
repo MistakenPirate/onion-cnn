@@ -20,6 +20,11 @@ def startup():
     model, device = load_model(WEIGHTS_PATH)
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     contents = await file.read()
